@@ -1,0 +1,120 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f8f8f8;
+}
+
+.etiqueta {
+    height: 520px;
+    width: 400px;
+    background: white;
+    padding: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+label {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+input, select {
+    font-size: 12px;
+    padding: 3px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.data-hora {
+    display: flex;
+    justify-content: space-between;
+}
+
+.data-hora label {
+    width: auto;
+}
+
+.data-hora input {
+    width: 48%;
+}
+
+#preview {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #0e0e0e;
+    max-width: 400px;
+    font-family: sans-serif;
+}
+
+#preview p {
+    margin: 10px 0;
+}
+
+button {
+    margin-top: 20px;
+}
+
+/* Estilos para a impressão */
+@media print {
+    button {
+        display: none; /* Esconde os botões ao imprimir */
+    }
+
+    #preview {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+#Btn_gerar_Preview{
+    background-color: rgb(105, 240, 105);
+    border: transparent;
+    border-radius: 30px;
+    height: 30px;
+}
+
+#Btn_gerar_Preview:hover{
+    background-color: green;
+    transition: 0.5s;
+}
+.Btn_imprimir{ 
+    background-color: rgb(232, 72, 72);
+    border:transparent;
+    border-radius: 30px;
+    height: 30px;
+}
+.Btn_imprimir:hover{
+    background-color: red;
+    transition: 0.5s;
+   
+
+}
+
+#creditos{
+    padding:20%;
+    font-size: 8px;
+    text-align: center;
+
+}
+
+#company{ 
+    padding: 10px;
+    font-size: 8px;
+    text-align: center;
+}
+
+
+
