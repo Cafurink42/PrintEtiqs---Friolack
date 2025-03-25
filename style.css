@@ -53,6 +53,7 @@ input, select {
 
 #preview {
     margin-top: 20px;
+    margin-left:20px;
     padding: 10px;
     border: 1px solid #0e0e0e;
     max-width: 400px;
@@ -61,6 +62,7 @@ input, select {
 
 #preview p {
     margin: 10px 0;
+ 
 }
 
 button {
