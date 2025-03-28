@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     function formatDate(date) {
         const d = new Date(date);
-        const day = String(d.getDate()).padStart(2, '0');
+        const day = String(d.getUTCDate()).padStart(2, '0');
         const month = String(d.getMonth() + 1).padStart(2, '0');
         const year = d.getFullYear();
         return `${day}/${month}/${year}`;
@@ -29,11 +29,28 @@ document.addEventListener("DOMContentLoaded", function () {
             alerta_empresa.innerHTML = "";
         }        
 
-        const cpf = document.getElementById("cpf").value;
+        const cpf = document.getElementById("cpf").value; //Reconhece string
+        validation_cpf = parseInt(cpf);  //validation convertendo para int
+        console.log(validation_cpf);
+        //valid = parseInt(validation);
+        //console.log(valid)
+        /*if (valid != Number){
+            alerta_cpf.innerHTML = "<p style = 'font-size:10px;color:red;padding-top:0px;padding-left:5px;'> Você precisa inserir um cpf ou cnpj válidos!</p>";
+        }
+        */
         alerta_cpf = document.querySelector("#span_03");
-        if (cpf.trim() === ''){
+        if (cpf === ''){
             alerta_cpf.innerHTML = "<p style = 'font-size:10px;color:red;padding-top:0px;padding-left:5px;'> Você precisa inserir um cpf ou cnpj para continuar!</p>";
         }
+        else if (isNaN(validation_cpf)){
+            alerta_cpf.innerHTML = "<p style = 'font-size:10px;color:red;padding-top:0px;padding-left:5px;'> Você precisa inserir um cpf ou cnpj válidos!</p>";
+        }
+        else if(isNaN(validation_cpf)){
+            
+        }
+        //PAREI AQUI
+       
+
         const data = formatDate(document.getElementById("data").value);
         const hora = document.getElementById("hora").value;
         const responsavel = document.getElementById("responsavel").value;
@@ -42,14 +59,14 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("prev-tipo").innerHTML = tipo;
         document.getElementById("prev-nome").innerHTML = nome;
         document.getElementById("prev-empresa").innerHTML = empresa;
-        document.getElementById("prev-cpf").innerHTML = cpf;
+        document.getElementById("prev-cpf").innerHTML = validation_cpf;
         document.getElementById("prev-data").innerHTML = data;
         document.getElementById("prev-hora").innerHTML = hora;
         document.getElementById("prev-responsavel").innerHTML = responsavel;
         
         // Chama a função salvarRegistro
         
-        salvarRegistro({ nome, tipo, empresa, cpf, data, hora, responsavel });
+        salvarRegistro({ nome, tipo, empresa, validation_cpf, data, hora, responsavel });
     });
 
     //evento que ocorre quando um elemento perde o foco.
@@ -98,18 +115,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 <hr>
                 <p><strong>Empresa: ${document.getElementById("empresa").value}</strong></p>
                 <hr>
-                <p><strong>CPF/CNPJ: ${document.getElementById("cpf").value}</strong></p>
+                <p><strong>CPF/CNPJ: ${validation_cpf}</strong></p>
                 <hr>
                 <p><strong>Data: ${formatDate(document.getElementById("data").value)}</strong></p>
                 <hr>
                 <p><strong>Hora: ${document.getElementById("hora").value}</strong></p>
                 <hr>
-                <p><strong>Responsável: ${document.getElementById("responsavel").value}</strong></p>
-
-                  
-            
-                
-            
+                <p><strong>Responsável: ${document.getElementById("responsavel").value}</strong></p>        
             </body>
             </html>
         `);
