@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     //Evento no botão de geração de preview resgatando os valores de cada campo preenchido
-    document.getElementById("Btn_gerar_Preview").addEventListener("click", function () {
+    document.getElementById("Btn_gerar_Preview").addEventListener("click", async function () {
         
         //validação dos campos
         const nome = document.getElementById("nome").value;
@@ -38,19 +38,18 @@ document.addEventListener("DOMContentLoaded", function () {
             alerta_cpf.innerHTML = "<p style = 'font-size:10px;color:red;padding-top:0px;padding-left:5px;'> Você precisa inserir um cpf ou cnpj válidos!</p>";
         }
         */
+
         alerta_cpf = document.querySelector("#span_03");
-        if (cpf === ''){
+        if (validation_cpf === ''){ //cpf
             alerta_cpf.innerHTML = "<p style = 'font-size:10px;color:red;padding-top:0px;padding-left:5px;'> Você precisa inserir um cpf ou cnpj para continuar!</p>";
         }
         else if (isNaN(validation_cpf)){
             alerta_cpf.innerHTML = "<p style = 'font-size:10px;color:red;padding-top:0px;padding-left:5px;'> Você precisa inserir um cpf ou cnpj válidos!</p>";
-        }
-        else if(isNaN(validation_cpf)){
+            return;
             
         }
+     
         //PAREI AQUI
-       
-
         const data = formatDate(document.getElementById("data").value);
         const hora = document.getElementById("hora").value;
         const responsavel = document.getElementById("responsavel").value;
@@ -59,14 +58,14 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("prev-tipo").innerHTML = tipo;
         document.getElementById("prev-nome").innerHTML = nome;
         document.getElementById("prev-empresa").innerHTML = empresa;
-        document.getElementById("prev-cpf").innerHTML = validation_cpf;
+        document.getElementById("prev-cpf").innerHTML = cpf;
         document.getElementById("prev-data").innerHTML = data;
         document.getElementById("prev-hora").innerHTML = hora;
         document.getElementById("prev-responsavel").innerHTML = responsavel;
         
         // Chama a função salvarRegistro
         
-        salvarRegistro({ nome, tipo, empresa, validation_cpf, data, hora, responsavel });
+        salvarRegistro({ nome, tipo, empresa, cpf, data, hora, responsavel});
     });
 
     //evento que ocorre quando um elemento perde o foco.
