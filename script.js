@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
         //validação dos campos
         const nome = document.getElementById("nome").value;
+        const phone = document.getElementById("phone").value;
         alerta_nome = document.querySelector("#span_01");
             if (nome.trim() === ''){
                 alerta_nome.innerHTML = "<p style = 'font-size:10px; color:red; padding-top: 0px; padding-left:5px;'>Você precisa inserir o nome para continuar!</p>";
@@ -20,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 alerta_nome.innerHTML = "";
             }
         const tipo = document.getElementById("tipo").value;
-        
         const empresa = document.getElementById("empresa").value;
         alerta_empresa = document.querySelector("#span_02");
         if (empresa.trim() === ''){
@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
         //Insere os valores via innerHTML no preview
         document.getElementById("prev-tipo").innerHTML = tipo;
         document.getElementById("prev-nome").innerHTML = nome;
+        document.getElementById("prev-contato").innerHTML = phone;
         document.getElementById("prev-empresa").innerHTML = empresa;
         document.getElementById("prev-cpf").innerHTML = cpf;
         document.getElementById("prev-data").innerHTML = data;
@@ -65,26 +66,26 @@ document.addEventListener("DOMContentLoaded", function () {
         
         // Chama a função salvarRegistro
         
-        salvarRegistro({ nome, tipo, empresa, cpf, data, hora, responsavel});
+        salvarRegistro({ nome, tipo, phone, empresa, cpf, data, hora, responsavel});
     });
 
     //evento que ocorre quando um elemento perde o foco.
     document.getElementById("nome").addEventListener("blur", function () {
         const nome = this.value;
         const registro = buscarRegistro(nome);
-
         //se o usuário perder o foco do campo nome e se existir o registro ele fará a busca.
 
         // fiz a remoção do || "" após o valor. 
         if (registro) {
             document.getElementById("tipo").value = registro.tipo;
+            document.getElementById("phone").value = registro.phone;
             document.getElementById("empresa").value = registro.empresa;
             document.getElementById("cpf").value = registro.cpf;
             document.getElementById("data").value = registro.data ? registro.data.split('/').reverse().join('-') : "";
             document.getElementById("hora").value = registro.hora;
             document.getElementById("responsavel").value = registro.responsavel;
         }
-    });
+    }).toUpperCase();
     
     //Evento que vai gerar a etiqueta pronta para a impressão
     document.getElementById("Btn_imprimir").addEventListener("click", function () {
@@ -111,6 +112,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 <p><strong>Tipo: ${document.getElementById("tipo").value}</strong></p>
                 <hr>
                 <p><strong>Nome: ${document.getElementById("nome").value}</strong></p>
+                <hr>
+                <p><strong>Nome: ${document.getElementById("phone").value}</strong></p>
                 <hr>
                 <p><strong>Empresa: ${document.getElementById("empresa").value}</strong></p>
                 <hr>
@@ -165,7 +168,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let registros = localStorage.getItem("registros") || "[]"; // Exporta apenas os registros
         const blob = new Blob([registros], {type: "application/json"});
         const url = URL.createObjectURL(blob);
-
         const a = document.createElement("a");
         a.href = url;
         a.download = "backup_registros.json";
