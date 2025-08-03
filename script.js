@@ -1,3 +1,4 @@
+
 //Evento no conteúdo do DOM que ajusta a formatção da data para dd/mm/yyyy
 document.addEventListener("DOMContentLoaded", function () {
     function formatDate(date) {
@@ -84,6 +85,8 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("data").value = registro.data ? registro.data.split('/').reverse().join('-') : "";
             document.getElementById("hora").value = registro.hora;
             document.getElementById("responsavel").value = registro.responsavel;
+        }else{
+        alert (`${document.getElementById("tipo").value} não encontrado! Por favor tente novamente!`)
         }
     }).toUpperCase();
     
