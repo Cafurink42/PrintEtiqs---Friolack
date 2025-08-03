@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <hr>
                 <p><strong>Nome: ${document.getElementById("nome").value}</strong></p>
                 <hr>
-                <p><strong>Nome: ${document.getElementById("phone").value}</strong></p>
+                <p><strong>Contato:${document.getElementById("phone").value}</strong></p>
                 <hr>
                 <p><strong>Empresa: ${document.getElementById("empresa").value}</strong></p>
                 <hr>
