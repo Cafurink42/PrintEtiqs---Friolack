@@ -86,9 +86,9 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("hora").value = registro.hora;
             document.getElementById("responsavel").value = registro.responsavel;
         }else{
-        alert (`${document.getElementById("tipo").value} não encontrado! Por favor tente novamente!`)
+            alert (`${document.getElementById("tipo").value} não encontrado! Por favor tente novamente!`)
         }
-    }).toUpperCase();
+    }) 
     
     //Evento que vai gerar a etiqueta pronta para a impressão
     document.getElementById("Btn_imprimir").addEventListener("click", function () {
