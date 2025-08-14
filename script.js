@@ -1,3 +1,4 @@
+JS:
 
 //Evento no conteúdo do DOM que ajusta a formatção da data para dd/mm/yyyy
 document.addEventListener("DOMContentLoaded", function () {
@@ -86,15 +87,25 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("hora").value = registro.hora;
             document.getElementById("responsavel").value = registro.responsavel;
         }else{
-            alert (`${document.getElementById("tipo").value} não encontrado! Por favor tente novamente!`)
+            alert (`${document.getElementById("nome").value} não encontrado! Por favor tente novamente!`)
         }
     }) 
     
     //Evento que vai gerar a etiqueta pronta para a impressão
     document.getElementById("Btn_imprimir").addEventListener("click", function () {
-        let printWindow = window.open('about:blank', '', 'width=800,height=600');
+        //#Commitar ERRO NOVA VERSÃO 1.3.3 linha 95 a 145 data hora e responsavel não acrescentados a etiqueta
+            const tipo = document.getElementById("tipo").value;
+            const nome = document.getElementById("nome").value;
+            const phone = document.getElementById("phone").value;
+            const empresa = document.getElementById("empresa").value;
+            const cpf = document.getElementById("cpf").value; //Commitar o cpf passando dentro do getElement
+            const data = formatDate(document.getElementById("data").value); // calcula uma vez
+            const hora = document.getElementById("hora").value;
+            const responsavel = document.getElementById("responsavel").value;
+            let printWindow = window.open('about:blank', '', 'width=800,height=600');
         //printWindow referencia o método window.open que vai, basicamente escrever um html na janela de impressão 
         //baseada nas informações de registro.
+         
         printWindow.document.write(`
             <html lang="pt-br">
             <head>
@@ -112,21 +123,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 <h2>S&S PORTARIA LTDA (FRIOLACK)</h2>
                 <span style = 'font-size:10px'>ACG Sistemas - 2025<span>
                 <hr>
-                <p><strong>Tipo: ${document.getElementById("tipo").value}</strong></p>
+                <p><strong>Tipo: ${tipo}</strong></p>
                 <hr>
-                <p><strong>Nome: ${document.getElementById("nome").value}</strong></p>
+                <p><strong>Nome: ${nome}</strong></p>
                 <hr>
-                <p><strong>Contato:${document.getElementById("phone").value}</strong></p>
+                <p><strong>Contato:${phone}</strong></p>
                 <hr>
-                <p><strong>Empresa: ${document.getElementById("empresa").value}</strong></p>
+                <p><strong>Empresa: ${empresa}</strong></p>
                 <hr>
-                <p><strong>CPF/CNPJ: ${validation_cpf}</strong></p>
+                <p><strong>CPF/CNPJ: ${cpf}</strong></p>
                 <hr>
-                <p><strong>Data: ${formatDate(document.getElementById("data").value)}</strong></p>
+                <p><strong>Data: ${data}</strong></p>
                 <hr>
-                <p><strong>Hora: ${document.getElementById("hora").value}</strong></p>
+                <p><strong>Hora: ${hora}</strong></p>
                 <hr>
-                <p><strong>Responsável: ${document.getElementById("responsavel").value}</strong></p>        
+                <p><strong>Responsável: ${responsavel}</strong></p>        
             </body>
             </html>
         `);
